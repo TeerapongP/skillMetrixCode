@@ -1,0 +1,15 @@
+<!-- <h2>Pokemon Search</h2> -->
+<div class="seach" style="display:  flex; flex-wrap: wrap; justify-content: center;">
+  <input type="text" #input (input)="seachPokemon(input.value)" placeholder="Enter Pokemon name">
+</div>
+<div id="app" style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <ng-container *ngIf="loading; else loadedContent">Loading...</ng-container>
+  <ng-template #loadedContent>
+    <div *ngFor="let pokemon of pokemons" class="pokemon-card">
+      <div>{{ pokemon.name }}</div>
+      <div *ngIf="pokemon.sprites.front_default">
+        <img [src]="pokemon.sprites.front_default" alt="{{ pokemon.name }}" />
+      </div>
+    </div>
+  </ng-template>
+</div>
