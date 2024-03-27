@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
@@ -7,12 +7,19 @@ import { Observable } from 'rxjs';
 export class ServiceService {
 
   constructor(private http: HttpClient) { }
-  private apiUrl = 'http://localhost:8000';
+  private apiUrl = 'https://tripsservice.onrender.com/';
 
-  SearchTripsData(keyword: string): Observable<any>{
+  SearchTripsData(keyword: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}?keyword=${keyword}`);
   }
   getTripsData(): Observable<any> {
     return this.http.get<any>(this.apiUrl);
+  }
+
+  postData(data: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.post(this.apiUrl, data, { headers });
   }
 } 
