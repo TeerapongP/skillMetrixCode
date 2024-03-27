@@ -68,11 +68,17 @@ export class TravelHomeComponent implements OnInit {
   }
   seachTripsData() {
     const searchValue = this.searchForm.get('textSearch')?.value;
-    if (searchValue !== null && searchValue !== "") {
+    if (null != searchValue && "" !== searchValue) {
       this.onSearchTrips.next(searchValue);
     } else {
       this.getTripsData();
     }
+  }
+  postData() {
+    const data = { key: 'value' };
+    this.tripsService.postData(data).subscribe(response => {
+      console.log(response);
+    });
   }
 
 }
