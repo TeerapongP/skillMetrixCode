@@ -74,6 +74,7 @@ export class TravelHomeComponent implements OnInit {
       this.getTripsData();
     }
   }
+
   postData() {
     const data = { key: 'value' };
     this.tripsService.postData(data).subscribe(response => {
